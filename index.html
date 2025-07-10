@@ -19,23 +19,10 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 18px;
-      transition: background-color 0.3s ease;
-    }
-    .button:hover {
-      background-color: #003f7f;
     }
     .hidden { display: none; }
-    #feedbackSection, #rulesSection, #codeSection, #finalCodeSection, #chatSection, #banScreen { margin-top: 20px; }
-    .chat-box {
-      background: #111;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: left;
-      max-width: 500px;
-      margin: 0 auto;
-      max-height: 300px;
-      overflow-y: auto;
-    }
+    #feedbackSection, #rulesSection, #codeSection, #finalCodeSection, #chatSection { margin-top: 20px; }
+    .chat-box { background: #111; padding: 10px; border-radius: 10px; text-align: left; max-width: 500px; margin: 0 auto; }
     .chat-message { margin-bottom: 10px; }
     .name { color: red; }
     .phone { color: purple; }
@@ -47,62 +34,39 @@
       border: none;
       margin: 10px 0;
     }
-    #unknownButton.unknown-on {
-      background-color: green;
-      transition: background-color 0.3s ease;
-    }
-    #unknownButton.unknown-off {
-      background-color: red;
-      transition: background-color 0.3s ease;
-    }
-    #banScreen {
-      background: black;
-      color: red;
-      padding: 30px;
-      font-size: 20px;
-    }
-    #banMessage {
-      color: red;
-      margin-bottom: 20px;
-    }
-    #unbanMessage {
-      color: green;
-    }
   </style>
 </head>
 <body>
-  <h1>Welcome to 7amada and mo7a's link</h1>
-  <audio id="themeSong" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>  <!-- WhatsApp Join Section --><button class="button" onclick="showCodeSection()">Join our WhatsApp Link</button>
+<h1>Welcome to 7amada and mo7a's link</h1><!-- Join Section --><button class="button" onclick="showCodeSection()">Join our WhatsApp Link</button>
 
-  <div id="codeSection" class="hidden">
-    <h2>Sike!!</h2>
-    <p>Code (you'll get it after 30 seconds):</p>
-    <button class="button" onclick="startCountdown()">Here's the code!!</button>
-    <div id="countdown" class="hidden"></div>
-    <div id="finalCodeSection" class="hidden">
-      <p id="codeText" onclick="copyCode()" style="cursor:pointer; font-weight:bold;">7AMA30</p>
-      <input type="text" id="enteredCode" placeholder="Enter the code here">
-      <button class="button" onclick="checkCode()">Enter</button>
-    </div>
-  </div>  <!-- Feedback Section --><button class="button" onclick="showFeedbackSection()">Feedback</button>
+<div id="codeSection" class="hidden">
+  <h2>Sike!!</h2>
+  <p>Code (you'll get it after 30 seconds):</p>
+  <button class="button" onclick="startCountdown()">Here's the code!!</button>
+  <div id="countdown" class="hidden"></div>
+  <div id="finalCodeSection" class="hidden">
+    <p id="codeText" onclick="copyCode()" style="cursor:pointer; font-weight:bold;"></p>
+    <input type="text" id="enteredCode" placeholder="Enter the code here">
+    <button class="button" onclick="checkCode()">Enter</button>
+  </div>
+</div><!-- Feedback Section --><button class="button" onclick="showFeedbackSection()">Feedback</button>
 
-  <div id="feedbackSection" class="hidden">
-    <p>Put your name first and your phone number and the admins will contact you</p>
-    <input type="text" id="feedbackName" placeholder="Name">
-    <input type="number" id="feedbackPhone" placeholder="Phone Number">
-    <button class="button" onclick="submitFeedbackInfo()">Submit Info</button>
-    <div id="chatSection" class="hidden">
-      <textarea id="feedbackText" rows="4" placeholder="Your feedback here..."></textarea>
-      <button class="button" onclick="submitFeedback()">Enter</button>
-      <button id="unknownButton" class="button unknown-off" onclick="toggleUnknown()">Unknown</button>
-      <div class="chat-box" id="chatBox"></div>
-      <p style="margin-top:20px">Wait until the owners of the group answer your feedback on WhatsApp...</p>
-    </div>
-  </div>  <!-- Rules Section --><button class="button" onclick="showRulesSection()">Rules</button>
+<div id="feedbackSection" class="hidden">
+  <p>Put your name first and your phone number and the admins will contact you</p>
+  <input type="text" id="feedbackName" placeholder="Name">
+  <input type="number" id="feedbackPhone" placeholder="Phone Number">
+  <button class="button" onclick="submitFeedbackInfo()">Submit Info</button>
+  <div id="chatSection" class="hidden">
+    <textarea id="feedbackText" rows="4" placeholder="Your feedback here..."></textarea>
+    <button class="button" onclick="submitFeedback()">Enter</button>
+    <div class="chat-box" id="chatBox"></div>
+    <p style="margin-top:20px">Wait until the owners of the group answer your feedback on WhatsApp. If it's something you hate about or someone cussed or anything you didn't like, we are sorry.</p>
+  </div>
+</div><!-- Rules Section --><button class="button" onclick="showRulesSection()">Rules</button>
 
-  <div id="rulesSection" class="hidden">
-    <h2>Rules</h2>
-    <pre style="text-align:left; max-width:600px; margin:0 auto">
+<div id="rulesSection" class="hidden">
+  <h2>Rules</h2>
+  <pre style="text-align:left; max-width:600px; margin:0 auto">
 *_GROUP RULES:_*
 *1-NO THREATENING PEOPLE-*
 *_2-NO BULLYING_*
@@ -114,128 +78,91 @@
 *_8-NO LGBTQ+ PEOPLE ALLOWED EVER_*
 *_9-NO CUSSING_*
 ---
-HELLO THERE AND WELCOME TO OUR GROUP...
-    </pre>
-  </div>  <!-- Ban Screen -->  <div id="banScreen" class="hidden">
-    <div id="banMessage">I gave you warnings and you kept breaking the rules. Can you at least speak nicely and friendly 😐</div>
-    <div id="timer"></div>
-    <div id="unbanMessage" class="hidden">
-      <p>Congratulations! You're now unbanned from the link.</p>
-      <button class="button" onclick="showReturnOption()">OK, Take me back</button>
-    </div>
-    <div id="returnOption" class="hidden">
-      <button class="button" onclick="location.reload()">I promise I won't do it again</button>
-    </div>
-  </div>  <script>
-    let badWords = ["fuck", "dumbass", "bitch", "ass", "dick", "sybau", "syfm", "nigger", "nigga", "shit", "motherfucker", "fucker"];
-    let warningCount = 0;
-    let isUnknown = false;
-
-    function showCodeSection() {
-      document.getElementById('codeSection').classList.remove('hidden');
+HELLO THERE AND WELCOME TO OUR GROUP. THIS GROUP THAT YOU COULD MAKE FRIENDS THERE AND IF YOU INVITE FRIENDS, YOUR FRIENDS WILL GET SOME FRIENDS TOO.
+ALSO DON'T FORGET TO FOLLOW @7amoeditz037 AND @YOURBOYMOSTAFA. IF THERE IS FIGHTS OR BULLYING OR ANYTHING WRONG IN THIS GROUP PLEASE CONTACT THE ADMINS.
+SO GOODBYE AND HAVE FUN AND ENJOY OUR GROUP AND I HOPE YOU APPRECIATE OUR GROUP!!
+  </pre>
+</div><!-- Firebase SDKs --><script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js"></script><script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCM10gc_nvNAqVm_yxgXEf_aCXVj3I9QzA",
+    authDomain: "amada-mo7a-link.firebaseapp.com",
+    projectId: "amada-mo7a-link",
+    storageBucket: "amada-mo7a-link.firebaseapp.com",
+    messagingSenderId: "804465981176",
+    appId: "1:804465981176:web:fceed1793688cb462a6d0d",
+    measurementId: "G-B6H9KPR9VF"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+</script><!-- Main Script Placeholder: Will be added in next step to handle code generation and chat --><script>
+  let generatedCode = '';
+  function showCodeSection() {
+    document.getElementById('codeSection').classList.remove('hidden');
+  }
+  function generateCode() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-
-    function startCountdown() {
-      const countdownDiv = document.getElementById('countdown');
-      let timeLeft = 30;
-      countdownDiv.classList.remove('hidden');
+    generatedCode = result;
+    document.getElementById('codeText').textContent = generatedCode;
+  }
+  function startCountdown() {
+    const countdownDiv = document.getElementById('countdown');
+    let timeLeft = 30;
+    countdownDiv.classList.remove('hidden');
+    countdownDiv.innerText = `Wait ${timeLeft} seconds...`;
+    generateCode();
+    const interval = setInterval(() => {
+      timeLeft--;
       countdownDiv.innerText = `Wait ${timeLeft} seconds...`;
-      const interval = setInterval(() => {
-        timeLeft--;
-        countdownDiv.innerText = `Wait ${timeLeft} seconds...`;
-        if (timeLeft <= 0) {
-          clearInterval(interval);
-          countdownDiv.classList.add('hidden');
-          document.getElementById('finalCodeSection').classList.remove('hidden');
-        }
-      }, 1000);
-    }
-
-    function copyCode() {
-      navigator.clipboard.writeText('7AMA30');
-      alert('Code copied!');
-    }
-
-    function checkCode() {
-      const entered = document.getElementById('enteredCode').value;
-      if (entered === '7AMA30') {
-        window.location.href = 'https://chat.whatsapp.com/IOXkN7QB8HHDYWWvm9jAmN?mode=ac_t';
-      } else {
-        alert('Wrong code!');
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        countdownDiv.classList.add('hidden');
+        document.getElementById('finalCodeSection').classList.remove('hidden');
       }
+    }, 1000);
+  }
+  function copyCode() {
+    navigator.clipboard.writeText(generatedCode);
+    alert('Code copied!');
+  }
+  function checkCode() {
+    const entered = document.getElementById('enteredCode').value;
+    if (entered === generatedCode) {
+      window.location.href = 'https://chat.whatsapp.com/IOXkN7QB8HHDYWWvm9jAmN?mode=ac_t';
+    } else {
+      alert('Wrong code!');
     }
+  }
+  function showFeedbackSection() {
+    document.getElementById('feedbackSection').classList.remove('hidden');
+  }
+  function submitFeedbackInfo() {
+    document.getElementById('chatSection').classList.remove('hidden');
+  }
+  function submitFeedback() {
+    const name = document.getElementById('feedbackName').value;
+    const phone = document.getElementById('feedbackPhone').value;
+    const text = document.getElementById('feedbackText').value;
+    if (!name || !phone || !text) return alert('Fill all fields!');
 
-    function showFeedbackSection() {
-      document.getElementById('feedbackSection').classList.remove('hidden');
-    }
+    // Save feedback to Firebase
+    const message = { name, phone, text, timestamp: Date.now() };
+    db.ref('feedbacks').push(message);
 
-    function submitFeedbackInfo() {
-      document.getElementById('chatSection').classList.remove('hidden');
-    }
+    document.getElementById('feedbackText').value = '';
+  }
 
-    function toggleUnknown() {
-      isUnknown = !isUnknown;
-      const btn = document.getElementById('unknownButton');
-      if (isUnknown) {
-        btn.classList.add('unknown-on');
-        btn.classList.remove('unknown-off');
-      } else {
-        btn.classList.add('unknown-off');
-        btn.classList.remove('unknown-on');
-      }
-    }
-
-    function submitFeedback() {
-      const name = document.getElementById('feedbackName').value || "Anonymous";
-      const phone = document.getElementById('feedbackPhone').value || "Hidden";
-      const text = document.getElementById('feedbackText').value.toLowerCase();
-
-      if (!text) return alert('Enter your message');
-      for (let word of badWords) {
-        if (text.includes(word)) {
-          handleCussWord(name);
-          return;
-        }
-      }
-
-      const chatBox = document.getElementById('chatBox');
-      const msg = document.createElement('div');
-      msg.classList.add('chat-message');
-      msg.innerHTML = `<span class="name">${isUnknown ? "Unknown" : name}</span> (<span class="phone">${isUnknown ? "Hidden" : phone}</span>): <span class="feedback-text">${text}</span>`;
-      chatBox.appendChild(msg);
-      document.getElementById('feedbackText').value = '';
-    }
-
-    function handleCussWord(name) {
-      warningCount++;
-      if (warningCount === 1) return alert("I'll give you a chance");
-      if (warningCount === 2) return alert(`⚠️ Warning 1 ⚠️ to ${name}`);
-      if (warningCount === 3) return alert(`⚠️ Warning 2 ⚠️ to ${name} Be careful`);
-      if (warningCount === 4) {
-        document.body.innerHTML = '';
-        document.body.appendChild(document.getElementById('banScreen'));
-        document.getElementById('banScreen').classList.remove('hidden');
-        let timeLeft = 1800;
-        const timer = document.getElementById('timer');
-        const interval = setInterval(() => {
-          const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-          const secs = String(timeLeft % 60).padStart(2, '0');
-          timer.innerText = `${mins}:${secs}`;
-          timeLeft--;
-          if (timeLeft < 0) {
-            clearInterval(interval);
-            document.getElementById('unbanMessage').classList.remove('hidden');
-          }
-        }, 1000);
-      }
-    }
-
-    function showRulesSection() {
-      document.getElementById('rulesSection').classList.remove('hidden');
-    }
-
-    function showReturnOption() {
-      document.getElementById('returnOption').classList.remove('hidden');
-    }
-  </script></body>
+  // Load existing messages from Firebase
+  db.ref('feedbacks').on('child_added', snapshot => {
+    const data = snapshot.val();
+    const chatBox = document.getElementById('chatBox');
+    const msg = document.createElement('div');
+    msg.classList.add('chat-message');
+    msg.innerHTML = `<span class="name">${data.name}</span> (<span class="phone">${data.phone}</span>): <span class="feedback-text">${data.text}</span>`;
+    chatBox.appendChild(msg);
+  });
+</script></body>
 </html>
